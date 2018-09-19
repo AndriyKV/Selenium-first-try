@@ -89,24 +89,24 @@ namespace Selenium_first_try
             Assert.IsTrue(SeleniumSetMethods.IsElementPresent(driver, By.CssSelector("img.img-product.busy")));
         }
 
-        [Test]
-        public void DropDownTest()
-        {
-            //Arrange
-            SeleniumSetMethods.ClickOperation(driver, "searchbox", "Id");            
-            SeleniumSetMethods.EnterText(driver, "searchbox", "Sony FDR-X3000R", "Id");
-            SeleniumSetMethods.ClickOperation(driver, "doSearch", "Id");
-            SeleniumSetMethods.SelectDropDown(driver, "search-type field", "all", "ClassName");
-            SeleniumSetMethods.ClickOperation(driver, "searchbox", "Id");
-            SeleniumSetMethods.EnterText(driver, "searchbox", "JBL Flip 4 Red (JBLFLIP4REDAM)", "Id");
-            SeleniumSetMethods.ClickOperation(driver, "doSearch", "Id");
-            string expected = "0 товарів";
+        //[Test]
+        //public void DropDownTest()
+        //{
+        //    //Arrange
+        //    SeleniumSetMethods.ClickOperation(driver, "searchbox", "Id");   
+        //SeleniumSetMethods.EnterText(driver, "searchbox", "Sony FDR-X3000R", "Id");
+        //    SeleniumSetMethods.ClickOperation(driver, "doSearch", "Id");
+        //    SeleniumSetMethods.SelectDropDown(driver, "search-type field", "all", "ClassName");
+        //    SeleniumSetMethods.ClickOperation(driver, "searchbox", "Id");
+        //    SeleniumSetMethods.EnterText(driver, "searchbox", "JBL Flip 4 Red (JBLFLIP4REDAM)", "Id");
+        //    SeleniumSetMethods.ClickOperation(driver, "doSearch", "Id");
+        //    string expected = "0 товарів";
 
-            //Act
-            string actual = driver.FindElement(By.CssSelector("p > span.bold")).Text;
+        //    //Act
+        //    string actual = driver.FindElement(By.CssSelector("p > span.bold")).Text;
 
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
+        //    //Assert
+        //    Assert.AreEqual(expected, actual);
     }
 }
+
