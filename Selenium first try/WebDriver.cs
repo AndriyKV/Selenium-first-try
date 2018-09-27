@@ -43,7 +43,7 @@ namespace Selenium_first_try
             driver.Navigate().GoToUrl("https://www.hotline.ua/logout/");
         }
 
-        [Test]
+        [Test, Order(1)]//виконуватиметься 1-т >> по нумерації >> без нумерації по алфавіту
         public void LoginErrorTest()
         {
             //Arrange
@@ -60,7 +60,7 @@ namespace Selenium_first_try
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
+        [Test, Order(2)]//виконуватиметься 2-м
         public void LocalizationTest()
         {
             //Arrange
