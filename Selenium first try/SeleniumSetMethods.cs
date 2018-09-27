@@ -21,11 +21,10 @@ namespace Selenium_first_try
             {
                 driver.FindElement(By.Name(element)).SendKeys(value);
             }
-            if (elementType == "ClassName")
-            {
-                driver.FindElement(By.ClassName(element)).SendKeys(value);
-            }
-
+            //if (elementType == "ClassName")
+            //{
+            //    driver.FindElement(By.ClassName(element)).SendKeys(value);
+            //}
         }
 
         //method for click operation
@@ -39,10 +38,10 @@ namespace Selenium_first_try
             {
                 driver.FindElement(By.Name(element)).Click();
             }
-            if (elementType == "ClassName")
-            {
-                driver.FindElement(By.ClassName(element)).Click();
-            }
+            //if (elementType == "ClassName")
+            //{
+            //    driver.FindElement(By.ClassName(element)).Click();
+            //}
         }
 
         //Selecting a drop down control
@@ -56,10 +55,10 @@ namespace Selenium_first_try
             {
                 new SelectElement(driver.FindElement(By.Name(element))).SelectByText(value);
             }
-            if (elementType == "ClassName")
-            {
-                new SelectElement(driver.FindElement(By.ClassName(element))).SelectByText(value);
-            }
+            //if (elementType == "ClassName")
+            //{
+            //    new SelectElement(driver.FindElement(By.ClassName(element))).SelectByText(value);
+            //}
         }
 
         //method for element present check

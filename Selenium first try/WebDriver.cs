@@ -21,7 +21,7 @@ namespace Selenium_first_try
         {
             driver = new ChromeDriver();//пуск браузера
             //driver = new FirefoxDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);//неявне очікування
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);//неявне очікування
             driver.Manage().Window.Maximize();//розгортаю вікно
         }
 
@@ -40,17 +40,19 @@ namespace Selenium_first_try
         [TearDown]
         public void TearDown()//після кожного тесту
         {
+            driver.Navigate().GoToUrl("https://www.hotline.ua/logout/");
         }
 
         [Test]
         public void LoginErrorTest()
         {
             //Arrange
-            driver.FindElement(By.ClassName("item-login")).Click();
-            driver.FindElement(By.CssSelector("input.btn-graphite.btn-cell")).Click();
+
             string expected = "Поле логін не може бути порожнім";
 
-            //Act
+            //Act            
+            driver.FindElement(By.ClassName("item-login")).Click();
+            driver.FindElement(By.CssSelector("input.btn-graphite.btn-cell")).Click();
             Thread.Sleep(2000);//також очікування НЕ ВИКОРИСТОВУВАТИ
             string actual = driver.FindElement(By.CssSelector("div.errors")).Text;
 
@@ -89,7 +91,31 @@ namespace Selenium_first_try
             Assert.IsTrue(SeleniumSetMethods.IsElementPresent(driver, By.CssSelector("img.img-product.busy")));
         }
 
-        //[Test]
+        [Test]
+        public void WebLogInTest()
+        {
+            //Arrange
+            driver.FindElement(By.ClassName("item-login")).Click();
+            IWebElement login = driver.FindElement(By.Name("login"));
+            login.Click();
+            login.Clear();
+            login.SendKeys("doujohn3@meta.ua");
+
+            IWebElement password = driver.FindElement(By.Name("password"));
+            password.Click();
+            password.Clear();
+            password.SendKeys("doujohn3");
+            password.Submit();
+
+            //check
+            driver.FindElement(By.ClassName("item-login")).Click();
+            Assert.IsTrue(SeleniumSetMethods.IsElementPresent(driver, By.CssSelector("[href*='/logout/']")));
+            driver.FindElement(By.CssSelector("[href*='/logout/']")).Click();
+            Assert.IsFalse(SeleniumSetMethods.IsElementPresent(driver, By.CssSelector("[href*='/logout/']")));
+            //#page-index > header > div.header > div > div > div.header-nav.cell-6 > div:nth-child(3) > div.item-compare > div > svg
+
+        }
+        //[Test] 
         //public void DropDownTest()
         //{
         //    //Arrange
@@ -109,4 +135,3 @@ namespace Selenium_first_try
         //    Assert.AreEqual(expected, actual);
     }
 }
-
